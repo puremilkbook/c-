@@ -4,6 +4,10 @@
 #include<vector>
 #include<sstream>
  #include<stdlib.h>
+ #include<iomanip>
+
+
+
 
 using namespace std;
 
@@ -37,6 +41,7 @@ void find(mangeSys &ms);
 void delete_student(mangeSys &ms);
 void alert(mangeSys &ms);
 void output_list(mangeSys &ms);
+void sort(mangeSys &ms);
 
 
 
@@ -48,7 +53,7 @@ int main(){
     bool tag = true;
     while(tag){
         
-         system("cls");
+         //system("cls");
         item();
         int num;
         cout<<"请输入以上功能所对应数字"<<endl;
@@ -68,10 +73,11 @@ int main(){
             alert(mangeSystem);
             break;
         case 5:
-            /* code */
+            output_list(mangeSystem);
             break;
         case 6:
-            /* code */
+            sort(mangeSystem);
+            output_list(mangeSystem);
             break;
         case 7:
             cout<<"bye!"<<endl;
@@ -82,6 +88,7 @@ int main(){
             
             break;
         }
+
         system("pause");
     }
     
@@ -157,6 +164,17 @@ void insert(mangeSys &ms){
     
     cout<<"请输入学号"<<endl;
     cin>>myid; 
+
+    for(int i =0 ;i<tag;i++){
+        if(myid == ms.student[i].id){
+            cout<<"插入失败，学号已存在！"<<endl;
+            ms.nums--;
+            
+            return ;
+        }
+    }
+
+
     ms.student[tag].id = myid;
     cout<<"请输入姓名"<<endl;
     cin>>myname; 
@@ -236,11 +254,11 @@ void delete_student(mangeSys &ms){
 
 
 
-    for(int i = tag ;i<ms.nums-1;i++){
+    for(int i = tag ;i<ms.nums;i++){
         ms.student[i] = ms.student[i+1];
     }
     Student student;
-    ms.student[ms.nums-1] = student;
+    ms.student[ms.nums] = student;
 
     cout<<"删除成功!"<<endl;
 
@@ -313,5 +331,54 @@ void alert(mangeSys &ms){
 
 
 void output_list(mangeSys &ms){
+   
+    // 输出表头
+    std::cout << std::internal << std::setw(15) << "ID"
+              << std::internal << std::setw(15) << "Name"
+              << std::internal << std::setw(15) << "Sex"
+              << std::internal << std::setw(15) << "Profession"
+              << std::internal << std::setw(15) << "Class"
+              << std::internal << std::setw(15) << "Dormitory ID"
+              << std::internal << std::setw(15) << "Native Place"
+              << std::internal<< std::setw(15) << "Number"
+              << std::internal << std::setw(15) << "QQ"
+              << std::internal << std::setw(15) << "WeChat" << std::endl;
+
+    // 输出表格内容
+    for (int i = 0; i < ms.nums; i++) {
+        std::cout << std::internal << std::setw(15) << ms.student[i].id
+                  << std::internal << std::setw(15) << ms.student[i].name
+                  << std::internal << std::setw(15) << ms.student[i].sex
+                  << std::internal << std::setw(15) << ms.student[i].profession
+                  << std::internal << std::setw(15) << ms.student[i].Class
+                  << std::internal << std::setw(15) << ms.student[i].dormitoryId
+                  << std::internal<< std::setw(15) << ms.student[i].nativePlace
+                  << std::internal << std::setw(15) << ms.student[i].number
+                  << std::internal << std::setw(15) << ms.student[i].QQ
+                  << std::internal << std::setw(15) << ms.student[i].wechat
+                  << std::endl;
+    }
+
+}
+
+void swapms(Student &st1, Student &st2){
+    Student st;
+    st = st1;
+    st1 = st2;
+    st2 = st;
+}
+
+//排序函数
+void sort(mangeSys &ms){
     
+    for(int i = 0;i<ms.nums;i++){
+        for(int j = 0;j<ms.nums - i -1;j++){
+            long long int a = stoi(ms.student[j].id);
+            long long int b = stoi(ms.student[j+1].id);
+
+            if(a>b){
+                swap(ms.student[j],ms.student[j+1]);
+            }
+        }
+    }
 }
