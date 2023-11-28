@@ -1,0 +1,317 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include<sstream>
+ #include<stdlib.h>
+
+using namespace std;
+
+const string FILENAME = "student.txt";
+const int nums_max = 100;
+
+
+struct Student{
+    string id;
+    string name;
+    string sex;
+    string profession;
+    string Class;
+    string dormitoryId;
+    string nativePlace;//籍贯
+    string number;
+    string QQ;
+    string wechat;
+};
+struct mangeSys{
+    struct Student student[nums_max];
+    int nums;
+};
+
+
+
+void item();
+mangeSys init();
+void insert(mangeSys &ms);
+void find(mangeSys &ms);
+void delete_student(mangeSys &ms);
+void alert(mangeSys &ms);
+void output_list(mangeSys &ms);
+
+
+
+
+int main(){
+ 
+    mangeSys mangeSystem;
+
+    bool tag = true;
+    while(tag){
+        
+         system("cls");
+        item();
+        int num;
+        cout<<"请输入以上功能所对应数字"<<endl;
+        cin>>num;
+        switch (num)
+        {
+        case 1:
+            insert(mangeSystem);
+            break;
+        case 2:
+            find(mangeSystem);
+            break;
+        case 3:
+            delete_student(mangeSystem);
+            break;
+        case 4:
+            alert(mangeSystem);
+            break;
+        case 5:
+            /* code */
+            break;
+        case 6:
+            /* code */
+            break;
+        case 7:
+            cout<<"bye!"<<endl;
+            tag = false;//停止while循环
+            break;
+        case 8:
+            mangeSystem = init();//实例
+            
+            break;
+        }
+        system("pause");
+    }
+    
+}
+
+//菜单函数
+void item(){
+    cout<<"欢迎来到通讯录管理系统！请输入您想实现功能所对应的数字"<<endl;
+    cout<<"1:添加联系人"<<endl;
+    cout<<"2:查询联系人"<<endl;
+    cout<<"3:删除联系人"<<endl;
+    cout<<"4:修改联系人信息"<<endl;
+    cout<<"5:输出联系人信息"<<endl;
+    cout<<"6:按学号排序"<<endl;
+    cout<<"7:退出程序"<<endl;
+    cout<<"8:初始化"<<endl;
+}
+//初始化函数
+mangeSys init(){
+    ifstream inputFile(FILENAME);
+
+    if (!inputFile.is_open()) {
+        cout << "初始化失败，请重试"<<endl;
+        mangeSys output;
+        return output;
+    }else{
+        cout<<"初始化成功！"<<endl;
+    }
+
+    vector<Student> ms;
+    string line;
+    
+    //将每行的数据提取到student结构体中
+    while(getline(inputFile,line)){
+        istringstream iss(line);
+        Student ms1;
+        
+        if(iss >> ms1.id >>ms1.name>>ms1.sex>>ms1.profession>>ms1.Class>>ms1.dormitoryId>>ms1.nativePlace>>ms1.number>>ms1.QQ>>ms1.wechat){
+            ms.push_back(ms1);
+        }else{
+            cout<<"分割错误"<<endl;
+        }
+
+    }
+
+    
+    mangeSys output ;
+    output.nums = ms.size();
+    
+    for (int i = 0; i < std::min(output.nums, nums_max); ++i) {
+        output.student[i] = ms[i];
+    }
+
+    inputFile.close();
+
+    return output;
+}
+
+//插入函数
+void insert(mangeSys &ms){
+    int tag = ms.nums;
+    ms.nums++;
+    string myid;
+    string myname;
+    string mysex;
+    string myprofession;
+    string myClass;
+    string mydormitoryId;
+    string mynativePlace;//籍贯
+    string mynumber;
+    string myQQ;
+    string mywechat;
+    
+    cout<<"请输入学号"<<endl;
+    cin>>myid; 
+    ms.student[tag].id = myid;
+    cout<<"请输入姓名"<<endl;
+    cin>>myname; 
+    ms.student[tag].name = myname;
+    cout<<"请输入性别"<<endl;
+    cin>>mysex; 
+    ms.student[tag].sex = mysex;
+    cout<<"请输入专业"<<endl;
+    cin>>myprofession; 
+    ms.student[tag].profession = myprofession;
+    cout<<"请输入班级"<<endl;
+    cin>>myClass; 
+    ms.student[tag].Class = myClass;
+    cout<<"请输入宿舍号"<<endl;
+    cin>>mydormitoryId; 
+    ms.student[tag].dormitoryId = mydormitoryId;
+    cout<<"请输入籍贯"<<endl;
+    cin>>mynativePlace; 
+    ms.student[tag].nativePlace = mynativePlace;
+    cout<<"请输入手机号"<<endl;
+    cin>>mynumber; 
+    ms.student[tag].number = mynumber;
+    cout<<"请输入QQ号"<<endl;
+    cin>>myQQ; 
+    ms.student[tag].QQ = myQQ;
+    cout<<"请输入微信号"<<endl;
+    cin>>mywechat; 
+    ms.student[tag].wechat = mywechat;
+
+    cout<<"添加成功！"<<endl;
+}
+
+//查询函数
+void find(mangeSys &ms){
+    string id;
+    cout<<"请输入学号"<<endl;
+    cin>>id;
+    bool tag = false;//记录查询状态
+    for(int i = 0;i<ms.nums;i++){
+        if(id == ms.student[i].id){
+            tag = true;
+            cout<<"学号:"<<ms.student[i].id<<endl;
+            cout<<"姓名:"<<ms.student[i].name<<endl;
+            cout<<"性别:"<<ms.student[i].sex<<endl;
+            cout<<"专业:"<<ms.student[i].profession<<endl;
+            cout<<"班级:"<<ms.student[i].Class<<endl;
+            cout<<"宿舍号:"<<ms.student[i].dormitoryId<<endl;
+            cout<<"籍贯:"<<ms.student[i].nativePlace<<endl;
+            cout<<"手机号:"<<ms.student[i].number<<endl;
+            cout<<"QQ号:"<<ms.student[i].QQ<<endl;
+            cout<<"微信号:"<<ms.student[i].wechat<<endl;
+        }
+    }
+    if(!tag){
+        cout<<"抱歉！没有查询到此人！"<<endl;
+    }
+}
+//删除函数
+void delete_student(mangeSys &ms){
+    ms.nums--;
+    string id;
+    cout<<"请输入要删除联系人的学号"<<endl;
+    cin>>id;
+    int tag;//记录要删除的位置
+    bool tags = true;
+    for(int i = 0;i<=ms.nums;i++){
+        if(id == ms.student[i].id){
+            tag = i;
+            tags = false;
+        }
+    }
+
+    if(tags){
+        cout<<"输入学号有误，删除失败！"<<endl;
+        return;
+    }
+
+
+
+    for(int i = tag ;i<ms.nums-1;i++){
+        ms.student[i] = ms.student[i+1];
+    }
+    Student student;
+    ms.student[ms.nums-1] = student;
+
+    cout<<"删除成功!"<<endl;
+
+
+}
+//修改信息
+void alert(mangeSys &ms){
+    string id;
+    cout<<"请输入要修改信息的联系人学号"<<endl;
+    cin>>id;
+    int tag;//记录要修改的位置
+    bool tags = true;
+    for(int i = 0;i<=ms.nums;i++){
+        if(id == ms.student[i].id){
+            tag = i;
+            tags = false;
+        }
+    }
+
+    if(tags){
+        cout<<"输入学号有误，删除失败！"<<endl;
+        return;
+    }
+
+    string myid;
+    string myname;
+    string mysex;
+    string myprofession;
+    string myClass;
+    string mydormitoryId;
+    string mynativePlace;//籍贯
+    string mynumber;
+    string myQQ;
+    string mywechat;
+    
+    cout<<"请输入修改后学号"<<endl;
+    cin>>myid; 
+    ms.student[tag].id = myid;
+    cout<<"请输入修改后姓名"<<endl;
+    cin>>myname; 
+    ms.student[tag].name = myname;
+    cout<<"请输入修改后性别"<<endl;
+    cin>>mysex; 
+    ms.student[tag].sex = mysex;
+    cout<<"请输入修改后专业"<<endl;
+    cin>>myprofession; 
+    ms.student[tag].profession = myprofession;
+    cout<<"请输入修改后班级"<<endl;
+    cin>>myClass; 
+    ms.student[tag].Class = myClass;
+    cout<<"请输入修改后宿舍号"<<endl;
+    cin>>mydormitoryId; 
+    ms.student[tag].dormitoryId = mydormitoryId;
+    cout<<"请输入修改后籍贯"<<endl;
+    cin>>mynativePlace; 
+    ms.student[tag].nativePlace = mynativePlace;
+    cout<<"请输入修改后手机号"<<endl;
+    cin>>mynumber; 
+    ms.student[tag].number = mynumber;
+    cout<<"请输入修改后QQ号"<<endl;
+    cin>>myQQ; 
+    ms.student[tag].QQ = myQQ;
+    cout<<"请输入修改后微信号"<<endl;
+    cin>>mywechat; 
+    ms.student[tag].wechat = mywechat;
+
+    cout<<"修改成功！"<<endl;
+
+}
+
+
+void output_list(mangeSys &ms){
+    
+}
