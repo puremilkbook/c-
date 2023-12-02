@@ -22,7 +22,7 @@ struct Student{
     string profession;
     string Class;
     string dormitoryId;
-    string nativePlace;//ç±è´¯
+    string nativePlace;//¼®¹á
     string number;
     string QQ;
     string wechat;
@@ -57,7 +57,7 @@ int main(){
          system("cls");
         item();
         int num;
-        cout<<"è¯·è¾“å…¥ä»¥ä¸ŠåŠŸèƒ½æ‰€å¯¹åº”æ•°å­—"<<endl;
+        cout<<"ÇëÊäÈëÒÔÉÏ¹¦ÄÜËù¶ÔÓ¦Êı×Ö"<<endl;
         cin>>num;
         switch (num)
         {
@@ -83,10 +83,10 @@ int main(){
         case 7:
             cout<<"bye!"<<endl;
             writes(mangeSystem);
-            tag = false;//åœæ­¢whileå¾ªç¯
+            tag = false;//Í£Ö¹whileÑ­»·
             break;
         case 8:
-            mangeSystem = init();//å®ä¾‹
+            mangeSystem = init();//ÊµÀı
             
             break;
         }
@@ -96,34 +96,34 @@ int main(){
     
 }
 
-//èœå•å‡½æ•°
+//²Ëµ¥º¯Êı
 void item(){
-    cout<<"æ¬¢è¿æ¥åˆ°é€šè®¯å½•ç®¡ç†ç³»ç»Ÿï¼è¯·è¾“å…¥æ‚¨æƒ³å®ç°åŠŸèƒ½æ‰€å¯¹åº”çš„æ•°å­—"<<endl;
-    cout<<"1:æ·»åŠ è”ç³»äºº"<<endl;
-    cout<<"2:æŸ¥è¯¢è”ç³»äºº"<<endl;
-    cout<<"3:åˆ é™¤è”ç³»äºº"<<endl;
-    cout<<"4:ä¿®æ”¹è”ç³»äººä¿¡æ¯"<<endl;
-    cout<<"5:è¾“å‡ºè”ç³»äººä¿¡æ¯"<<endl;
-    cout<<"6:æŒ‰å­¦å·æ’åº"<<endl;
-    cout<<"7:é€€å‡ºç¨‹åº"<<endl;
-    cout<<"8:åˆå§‹åŒ–"<<endl;
+    cout<<"»¶Ó­À´µ½Í¨Ñ¶Â¼¹ÜÀíÏµÍ³£¡ÇëÊäÈëÄúÏëÊµÏÖ¹¦ÄÜËù¶ÔÓ¦µÄÊı×Ö"<<endl;
+    cout<<"1:Ìí¼ÓÁªÏµÈË"<<endl;
+    cout<<"2:²éÑ¯ÁªÏµÈË"<<endl;
+    cout<<"3:É¾³ıÁªÏµÈË"<<endl;
+    cout<<"4:ĞŞ¸ÄÁªÏµÈËĞÅÏ¢"<<endl;
+    cout<<"5:Êä³öÁªÏµÈËĞÅÏ¢"<<endl;
+    cout<<"6:°´Ñ§ºÅÅÅĞò"<<endl;
+    cout<<"7:ÍË³ö³ÌĞò"<<endl;
+    cout<<"8:³õÊ¼»¯"<<endl;
 }
-//åˆå§‹åŒ–å‡½æ•°
+//³õÊ¼»¯º¯Êı
 mangeSys init(){
     ifstream inputFile(FILENAME);
 
     if (!inputFile.is_open()) {
-        cout << "åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·é‡è¯•"<<endl;
+        cout << "³õÊ¼»¯Ê§°Ü£¬ÇëÖØÊÔ"<<endl;
         mangeSys output;
         return output;
     }else{
-        cout<<"åˆå§‹åŒ–æˆåŠŸï¼"<<endl;
+        cout<<"³õÊ¼»¯³É¹¦£¡"<<endl;
     }
 
     vector<Student> ms;
     string line;
     
-    //å°†æ¯è¡Œçš„æ•°æ®æå–åˆ°studentç»“æ„ä½“ä¸­
+    //½«Ã¿ĞĞµÄÊı¾İÌáÈ¡µ½student½á¹¹ÌåÖĞ
     while(getline(inputFile,line)){
         istringstream iss(line);
         Student ms1;
@@ -131,7 +131,7 @@ mangeSys init(){
         if(iss >> ms1.id >>ms1.name>>ms1.sex>>ms1.profession>>ms1.Class>>ms1.dormitoryId>>ms1.nativePlace>>ms1.number>>ms1.QQ>>ms1.wechat){
             ms.push_back(ms1);
         }else{
-            cout<<"åˆ†å‰²é”™è¯¯"<<endl;
+            cout<<"·Ö¸î´íÎó"<<endl;
         }
 
     }
@@ -140,7 +140,7 @@ mangeSys init(){
     mangeSys output ;
     output.nums = ms.size();
     
-    for (int i = 0; i < std::min(output.nums, nums_max); ++i) {
+    for (int i = 0;i < std::min(output.nums, nums_max);++i) {
         output.student[i] = ms[i];
     }
 
@@ -149,7 +149,7 @@ mangeSys init(){
     return output;
 }
 
-//æ’å…¥å‡½æ•°
+//²åÈëº¯Êı
 void insert(mangeSys &ms){
     int tag = ms.nums;
     ms.nums++;
@@ -159,17 +159,17 @@ void insert(mangeSys &ms){
     string myprofession;
     string myClass;
     string mydormitoryId;
-    string mynativePlace;//ç±è´¯
+    string mynativePlace;//¼®¹á
     string mynumber;
     string myQQ;
     string mywechat;
     
-    cout<<"è¯·è¾“å…¥å­¦å·"<<endl;
-    cin>>myid; 
+    cout<<"ÇëÊäÈëÑ§ºÅ"<<endl;
+    cin>>myid;
 
     for(int i =0 ;i<tag;i++){
         if(myid == ms.student[i].id){
-            cout<<"æ’å…¥å¤±è´¥ï¼Œå­¦å·å·²å­˜åœ¨ï¼"<<endl;
+            cout<<"²åÈëÊ§°Ü£¬Ñ§ºÅÒÑ´æÔÚ£¡"<<endl;
             ms.nums--;
             
             return ;
@@ -178,69 +178,69 @@ void insert(mangeSys &ms){
 
 
     ms.student[tag].id = myid;
-    cout<<"è¯·è¾“å…¥å§“å"<<endl;
-    cin>>myname; 
+    cout<<"ÇëÊäÈëĞÕÃû"<<endl;
+    cin>>myname;
     ms.student[tag].name = myname;
-    cout<<"è¯·è¾“å…¥æ€§åˆ«"<<endl;
-    cin>>mysex; 
+    cout<<"ÇëÊäÈëĞÔ±ğ"<<endl;
+    cin>>mysex;
     ms.student[tag].sex = mysex;
-    cout<<"è¯·è¾“å…¥ä¸“ä¸š"<<endl;
-    cin>>myprofession; 
+    cout<<"ÇëÊäÈë×¨Òµ"<<endl;
+    cin>>myprofession;
     ms.student[tag].profession = myprofession;
-    cout<<"è¯·è¾“å…¥ç­çº§"<<endl;
-    cin>>myClass; 
+    cout<<"ÇëÊäÈë°à¼¶"<<endl;
+    cin>>myClass;
     ms.student[tag].Class = myClass;
-    cout<<"è¯·è¾“å…¥å®¿èˆå·"<<endl;
-    cin>>mydormitoryId; 
+    cout<<"ÇëÊäÈëËŞÉáºÅ"<<endl;
+    cin>>mydormitoryId;
     ms.student[tag].dormitoryId = mydormitoryId;
-    cout<<"è¯·è¾“å…¥ç±è´¯"<<endl;
-    cin>>mynativePlace; 
+    cout<<"ÇëÊäÈë¼®¹á"<<endl;
+    cin>>mynativePlace;
     ms.student[tag].nativePlace = mynativePlace;
-    cout<<"è¯·è¾“å…¥æ‰‹æœºå·"<<endl;
-    cin>>mynumber; 
+    cout<<"ÇëÊäÈëÊÖ»úºÅ"<<endl;
+    cin>>mynumber;
     ms.student[tag].number = mynumber;
-    cout<<"è¯·è¾“å…¥QQå·"<<endl;
-    cin>>myQQ; 
+    cout<<"ÇëÊäÈëQQºÅ"<<endl;
+    cin>>myQQ;
     ms.student[tag].QQ = myQQ;
-    cout<<"è¯·è¾“å…¥å¾®ä¿¡å·"<<endl;
-    cin>>mywechat; 
+    cout<<"ÇëÊäÈëÎ¢ĞÅºÅ"<<endl;
+    cin>>mywechat;
     ms.student[tag].wechat = mywechat;
 
-    cout<<"æ·»åŠ æˆåŠŸï¼"<<endl;
+    cout<<"Ìí¼Ó³É¹¦£¡"<<endl;
 }
 
-//æŸ¥è¯¢å‡½æ•°
+//²éÑ¯º¯Êı
 void find(mangeSys &ms){
     string id;
-    cout<<"è¯·è¾“å…¥å­¦å·"<<endl;
+    cout<<"ÇëÊäÈëÑ§ºÅ"<<endl;
     cin>>id;
-    bool tag = false;//è®°å½•æŸ¥è¯¢çŠ¶æ€
+    bool tag = false;//¼ÇÂ¼²éÑ¯×´Ì¬
     for(int i = 0;i<ms.nums;i++){
         if(id == ms.student[i].id){
             tag = true;
-            cout<<"å­¦å·:"<<ms.student[i].id<<endl;
-            cout<<"å§“å:"<<ms.student[i].name<<endl;
-            cout<<"æ€§åˆ«:"<<ms.student[i].sex<<endl;
-            cout<<"ä¸“ä¸š:"<<ms.student[i].profession<<endl;
-            cout<<"ç­çº§:"<<ms.student[i].Class<<endl;
-            cout<<"å®¿èˆå·:"<<ms.student[i].dormitoryId<<endl;
-            cout<<"ç±è´¯:"<<ms.student[i].nativePlace<<endl;
-            cout<<"æ‰‹æœºå·:"<<ms.student[i].number<<endl;
-            cout<<"QQå·:"<<ms.student[i].QQ<<endl;
-            cout<<"å¾®ä¿¡å·:"<<ms.student[i].wechat<<endl;
+            cout<<"Ñ§ºÅ:"<<ms.student[i].id<<endl;
+            cout<<"ĞÕÃû:"<<ms.student[i].name<<endl;
+            cout<<"ĞÔ±ğ:"<<ms.student[i].sex<<endl;
+            cout<<"×¨Òµ:"<<ms.student[i].profession<<endl;
+            cout<<"°à¼¶:"<<ms.student[i].Class<<endl;
+            cout<<"ËŞÉáºÅ:"<<ms.student[i].dormitoryId<<endl;
+            cout<<"¼®¹á:"<<ms.student[i].nativePlace<<endl;
+            cout<<"ÊÖ»úºÅ:"<<ms.student[i].number<<endl;
+            cout<<"QQºÅ:"<<ms.student[i].QQ<<endl;
+            cout<<"Î¢ĞÅºÅ:"<<ms.student[i].wechat<<endl;
         }
     }
     if(!tag){
-        cout<<"æŠ±æ­‰ï¼æ²¡æœ‰æŸ¥è¯¢åˆ°æ­¤äººï¼"<<endl;
+        cout<<"±§Ç¸£¡Ã»ÓĞ²éÑ¯µ½´ËÈË£¡"<<endl;
     }
 }
-//åˆ é™¤å‡½æ•°
+//É¾³ıº¯Êı
 void delete_student(mangeSys &ms){
     ms.nums--;
     string id;
-    cout<<"è¯·è¾“å…¥è¦åˆ é™¤è”ç³»äººçš„å­¦å·"<<endl;
+    cout<<"ÇëÊäÈëÒªÉ¾³ıÁªÏµÈËµÄÑ§ºÅ"<<endl;
     cin>>id;
-    int tag;//è®°å½•è¦åˆ é™¤çš„ä½ç½®
+    int tag;//¼ÇÂ¼ÒªÉ¾³ıµÄÎ»ÖÃ
     bool tags = true;
     for(int i = 0;i<=ms.nums;i++){
         if(id == ms.student[i].id){
@@ -250,7 +250,7 @@ void delete_student(mangeSys &ms){
     }
 
     if(tags){
-        cout<<"è¾“å…¥å­¦å·æœ‰è¯¯ï¼Œåˆ é™¤å¤±è´¥ï¼"<<endl;
+        cout<<"ÊäÈëÑ§ºÅÓĞÎó£¬É¾³ıÊ§°Ü£¡"<<endl;
         return;
     }
 
@@ -262,16 +262,16 @@ void delete_student(mangeSys &ms){
     Student student;
     ms.student[ms.nums] = student;
 
-    cout<<"åˆ é™¤æˆåŠŸ!"<<endl;
+    cout<<"É¾³ı³É¹¦!"<<endl;
 
 
 }
-//ä¿®æ”¹ä¿¡æ¯
+//ĞŞ¸ÄĞÅÏ¢
 void alert(mangeSys &ms){
     string id;
-    cout<<"è¯·è¾“å…¥è¦ä¿®æ”¹ä¿¡æ¯çš„è”ç³»äººå­¦å·"<<endl;
+    cout<<"ÇëÊäÈëÒªĞŞ¸ÄĞÅÏ¢µÄÁªÏµÈËÑ§ºÅ"<<endl;
     cin>>id;
-    int tag;//è®°å½•è¦ä¿®æ”¹çš„ä½ç½®
+    int tag;//¼ÇÂ¼ÒªĞŞ¸ÄµÄÎ»ÖÃ
     bool tags = true;
     for(int i = 0;i<=ms.nums;i++){
         if(id == ms.student[i].id){
@@ -281,7 +281,7 @@ void alert(mangeSys &ms){
     }
 
     if(tags){
-        cout<<"è¾“å…¥å­¦å·æœ‰è¯¯ï¼Œåˆ é™¤å¤±è´¥ï¼"<<endl;
+        cout<<"ÊäÈëÑ§ºÅÓĞÎó£¬É¾³ıÊ§°Ü£¡"<<endl;
         return;
     }
 
@@ -291,56 +291,56 @@ void alert(mangeSys &ms){
     string myprofession;
     string myClass;
     string mydormitoryId;
-    string mynativePlace;//ç±è´¯
+    string mynativePlace;//¼®¹á
     string mynumber;
     string myQQ;
     string mywechat;
     
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åå­¦å·"<<endl;
-    cin>>myid; 
+    cout<<"ÇëÊäÈëĞŞ¸ÄºóÑ§ºÅ"<<endl;
+    cin>>myid;
     for(int i =0 ;i<tag;i++){
         if(myid == ms.student[i].id){
-            cout<<"ä¿®æ”¹å¤±è´¥ï¼Œå­¦å·å·²å­˜åœ¨ï¼"<<endl;
+            cout<<"ĞŞ¸ÄÊ§°Ü£¬Ñ§ºÅÒÑ´æÔÚ£¡"<<endl;
             return ;
         }
     }
     ms.student[tag].id = myid;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åå§“å"<<endl;
-    cin>>myname; 
+    cout<<"ÇëÊäÈëĞŞ¸ÄºóĞÕÃû"<<endl;
+    cin>>myname;
     ms.student[tag].name = myname;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åæ€§åˆ«"<<endl;
-    cin>>mysex; 
+    cout<<"ÇëÊäÈëĞŞ¸ÄºóĞÔ±ğ"<<endl;
+    cin>>mysex;
     ms.student[tag].sex = mysex;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åä¸“ä¸š"<<endl;
-    cin>>myprofession; 
+    cout<<"ÇëÊäÈëĞŞ¸Äºó×¨Òµ"<<endl;
+    cin>>myprofession;
     ms.student[tag].profession = myprofession;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åç­çº§"<<endl;
-    cin>>myClass; 
+    cout<<"ÇëÊäÈëĞŞ¸Äºó°à¼¶"<<endl;
+    cin>>myClass;
     ms.student[tag].Class = myClass;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åå®¿èˆå·"<<endl;
-    cin>>mydormitoryId; 
+    cout<<"ÇëÊäÈëĞŞ¸ÄºóËŞÉáºÅ"<<endl;
+    cin>>mydormitoryId;
     ms.student[tag].dormitoryId = mydormitoryId;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åç±è´¯"<<endl;
-    cin>>mynativePlace; 
+    cout<<"ÇëÊäÈëĞŞ¸Äºó¼®¹á"<<endl;
+    cin>>mynativePlace;
     ms.student[tag].nativePlace = mynativePlace;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åæ‰‹æœºå·"<<endl;
-    cin>>mynumber; 
+    cout<<"ÇëÊäÈëĞŞ¸ÄºóÊÖ»úºÅ"<<endl;
+    cin>>mynumber;
     ms.student[tag].number = mynumber;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åQQå·"<<endl;
-    cin>>myQQ; 
+    cout<<"ÇëÊäÈëĞŞ¸ÄºóQQºÅ"<<endl;
+    cin>>myQQ;
     ms.student[tag].QQ = myQQ;
-    cout<<"è¯·è¾“å…¥ä¿®æ”¹åå¾®ä¿¡å·"<<endl;
-    cin>>mywechat; 
+    cout<<"ÇëÊäÈëĞŞ¸ÄºóÎ¢ĞÅºÅ"<<endl;
+    cin>>mywechat;
     ms.student[tag].wechat = mywechat;
 
-    cout<<"ä¿®æ”¹æˆåŠŸï¼"<<endl;
+    cout<<"ĞŞ¸Ä³É¹¦£¡"<<endl;
 
 }
 
 
 void output_list(mangeSys &ms){
    
-    // è¾“å‡ºè¡¨å¤´
+    // Êä³ö±íÍ·
     std::cout << std::internal << std::setw(15) << "ID"
               << std::internal << std::setw(15) << "Name"
               << std::internal << std::setw(15) << "Sex"
@@ -352,8 +352,8 @@ void output_list(mangeSys &ms){
               << std::internal << std::setw(15) << "QQ"
               << std::internal << std::setw(15) << "WeChat" << std::endl;
 
-    // è¾“å‡ºè¡¨æ ¼å†…å®¹
-    for (int i = 0; i < ms.nums; i++) {
+    // Êä³ö±í¸ñÄÚÈİ
+    for (int i = 0;i < ms.nums;i++) {
         std::cout << std::internal << std::setw(15) << ms.student[i].id
                   << std::internal << std::setw(15) << ms.student[i].name
                   << std::internal << std::setw(15) << ms.student[i].sex
@@ -376,7 +376,7 @@ void swapms(Student &st1, Student &st2){
     st2 = st;
 }
 
-//æ’åºå‡½æ•°
+//ÅÅĞòº¯Êı
 void sort(mangeSys &ms){
     
     for(int i = 0;i<ms.nums;i++){
@@ -390,7 +390,7 @@ void sort(mangeSys &ms){
         }
     }
 }
-//å†™å…¥å‡½æ•°
+//Ğ´Èëº¯Êı
 void writes(mangeSys &ms){
     ofstream outputfile(FILENAME);
 
@@ -409,9 +409,9 @@ void writes(mangeSys &ms){
             
         }
         outputfile.close();
-            cout<<"é€šè®¯å½•æ•°æ®å·²ä¿å­˜ï¼"<<endl;
+            cout<<"Í¨Ñ¶Â¼Êı¾İÒÑ±£´æ£¡"<<endl;
     }else{
-        cout<<"é€šè®¯å½•æ•°æ®ä¿å­˜å¤±è´¥ï¼"<<endl;
+        cout<<"Í¨Ñ¶Â¼Êı¾İ±£´æÊ§°Ü£¡"<<endl;
     }
     
     
